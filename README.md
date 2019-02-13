@@ -26,8 +26,8 @@ Pasos para probar la aplicación:
 ```
 	 Properties.Settings.Default["DGTdbConnectionString"] = TbStingConexion.Text;
 ```
-
+<pre>
      e ir a la pestaña Solution Explorer/Settings.settings, cambiar allí la cadena de conexión y volver a pulsar F5 y cuuando nos pregunte
      la cadena de conexión modificarla con la nuestra (hace dos conexiones a la base de datos: Datasets y SqlConnection).
-
+</pre>
 
