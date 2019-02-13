@@ -23,7 +23,9 @@ Pasos para probar la aplicación:
      de conexión. Si nos diera error porque no deja cambiar la cadena de conexión tenemos que entrar en FrmDbConnection.cs y comentar la
      línea:
 
+```
 	 Properties.Settings.Default["DGTdbConnectionString"] = TbStingConexion.Text;
+```
 
      e ir a la pestaña Solution Explorer/Settings.settings, cambiar allí la cadena de conexión y volver a pulsar F5 y cuuando nos pregunte
      la cadena de conexión modificarla con la nuestra (hace dos conexiones a la base de datos: Datasets y SqlConnection).
