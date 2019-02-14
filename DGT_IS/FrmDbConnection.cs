@@ -40,9 +40,7 @@ namespace DGT_IS
                 Globals.conn.Open();
                 // Comentar la línea de abajo si da error.
                 Properties.Settings.Default["DGTdbConnectionString"] = TbStingConexion.Text;
-                Hide();
-                FrmMain frmMain = new FrmMain();
-                frmMain.ShowDialog();
+                Close();
             }
             catch (Exception ex)
             {

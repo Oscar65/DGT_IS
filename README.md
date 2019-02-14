@@ -10,23 +10,22 @@ El desarrollo se ha hecho con Visual Studio 2017 y la base de datos con SQL Serv
 
 Pasos para probar la aplicación:
 
-1- Tener instalados Visual Studio y SQL Server.
+1- Tener instalados Visual Studio 2017, SQL Server EXPRESS 2017 y Microsoft SQL Management Studio.
 
-2- Crear la base de datos: Tenemos que crear una nueva query en SQL Server, copiar el contenido del fichero
-   Database DGTdb script.sql y ejecutar la query (el path donde graba los ficheros de la base de datos está en inglés,
-   por lo que se puede dar el caso que se tenga que cambiar por un path correcto en nuestra máquina).
+2- Crear la base de datos: Tenemos que abrir Microsoft SQL Management Studio y pulsar new query, copiar el contenido del fichero
+   Database DGTdb script.sql y ejecutar la query con F5.
 
-3- Cargar la solución DGT_IS con Visual studio. Una vez cargada pulsar F5.
+3- Cargar la solución DGT_IS con Visual studio 2017. Una vez cargada pulsar F5.
 
-4- Si hemos configurado SQL Server para entrar por Windows authentication no tenemos que hacer nada más que elegir el tipo de servidor
-   (SQL Server o SQL Server EXPRESS). Si le hemos configurado para que entre por usuario y contraseña tendremos que modificar la cadena
-   de conexión. Si nos diera error porque no deja cambiar la cadena de conexión tenemos que entrar en FrmDbConnection.cs y comentar la
-   línea:
+4- Si hemos configurado SQL Server EXPRESS para entrar por Windows authentication no tenemos que hacer nada. Si tenemos SQL Server
+elegiremos en el tipo de servidor SQL Server. Si le hemos configurado para que entre por usuario y contraseña tendremos que modificar
+la cadena de conexión. Si nos diera error porque no deja cambiar la cadena de conexión tenemos que entrar en FrmDbConnection.cs y
+comentar la siguiente línea:
 
 ```
 	 Properties.Settings.Default["DGTdbConnectionString"] = TbStingConexion.Text;
 ```
 
-e ir a la pestaña Solution Explorer/Settings.settings, cambiar allí la cadena de conexión y volver a pulsar F5 y cuuando nos pregunte
-la cadena de conexión modificarla con la nuestra (hace dos conexiones a la base de datos: Datasets y SqlConnection).
+e ir a la pestaña Solution Explorer (View/Solution Explorer o pulsando las teclas Ctrl+Alt+L) en Visual Studio 2017, luego hacemos clic en Properties/Settings.settings. Cambiamos la cadena de conexión y volvemos a pulsar F5 y cuando nos pregunte la cadena de conexión
+modificarla con la que necesita nuestro servidor SQL Server EXPRESS (hace dos conexiones a la base de datos: Datasets y SqlConnection).
 
