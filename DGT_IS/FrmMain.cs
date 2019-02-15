@@ -55,8 +55,8 @@ namespace DGT_IS
 
         private void BtnAltaConductor_Click(object sender, EventArgs e)
         {
-            FrmAltaConductor frmAltaConductor = new FrmAltaConductor();
-            frmAltaConductor.ShowDialog();
+            FrmAltaConductor2 frmAltaConductor2 = new FrmAltaConductor2();
+            frmAltaConductor2.ShowDialog();
         }
 
         private void BtnAltaInfraccion_Click(object sender, EventArgs e)

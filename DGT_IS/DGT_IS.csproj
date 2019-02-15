@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmAltaConductor2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAltaConductor2.Designer.cs">
+      <DependentUpon>FrmAltaConductor2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDbConnection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmAltaConductor2.resx">
+      <DependentUpon>FrmAltaConductor2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmDbConnection.resx">
       <DependentUpon>FrmDbConnection.cs</DependentUpon>
     </EmbeddedResource>
