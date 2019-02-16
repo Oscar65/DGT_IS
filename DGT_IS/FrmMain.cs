@@ -61,8 +61,8 @@ namespace DGT_IS
 
         private void BtnAltaInfraccion_Click(object sender, EventArgs e)
         {
-            FrmAltaInfraccion frmAltaInfraccion = new FrmAltaInfraccion();
-            frmAltaInfraccion.ShowDialog();
+            FrmAltaInfraccion2 frmAltaInfraccion2 = new FrmAltaInfraccion2();
+            frmAltaInfraccion2.ShowDialog();
         }
 
         private void BtnAltaInfraccionVehiculo_Click(object sender, EventArgs e)
