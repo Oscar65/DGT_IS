@@ -56,11 +56,27 @@ namespace DGT_IS
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
-            if (identificadorTextBox.Text == "" && descripcionTextBox.Text == "")
+            try
             {
+                if (identificadorTextBox.Text == "")
+                {
+                    MessageBox.Show("El identificador no puede ser nulo.",
+                                    "ERROR",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    return;
+                }
+                this.infraccionBindingSource.AddNew();
                 this.bindingNavigatorPositionItem.Text = (this.infraccionBindingSource.Position + 1).ToString();
                 puntos_descuentaUpDown.Value = puntos_descuentaUpDown.Minimum;
                 puntos_descuentaUpDown.Select();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                                "ERROR",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
             }
         }
 
@@ -89,12 +105,6 @@ namespace DGT_IS
         {
             if (puntos_descuentaUpDown.Value == 0)
             {
-                /*
-                 * 
-                 * Para que funcionen las flechas para incrementar y decrementar el valor.
-                 * 
-                 */
-                //identificadorTextBox.Select();
                 puntos_descuentaUpDown.Select();
                 this.errorProvider1.SetError(puntos_descuentaUpDown, "Debe ser mayor que cero");
                 e.Cancel = true;
