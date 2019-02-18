@@ -55,6 +55,8 @@
             this.identificadorTextBox = new System.Windows.Forms.TextBox();
             this.descripcionTextBox = new System.Windows.Forms.TextBox();
             this.puntos_descuentaUpDown = new System.Windows.Forms.NumericUpDown();
+            this.BtnCerrar = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             infraccion_idLabel = new System.Windows.Forms.Label();
             identificadorLabel = new System.Windows.Forms.Label();
             descripcionLabel = new System.Windows.Forms.Label();
@@ -64,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.infraccionBindingNavigator)).BeginInit();
             this.infraccionBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.puntos_descuentaUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // infraccion_idLabel
@@ -127,7 +130,7 @@
             this.infraccionBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
             this.infraccionBindingNavigator.BindingSource = this.infraccionBindingSource;
             this.infraccionBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.infraccionBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.infraccionBindingNavigator.DeleteItem = null;
             this.infraccionBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.infraccionBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
@@ -143,13 +146,13 @@
             this.bindingNavigatorDeleteItem,
             this.infraccionBindingNavigatorSaveItem});
             this.infraccionBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.infraccionBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.infraccionBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.infraccionBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.infraccionBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.infraccionBindingNavigator.MoveFirstItem = null;
+            this.infraccionBindingNavigator.MoveLastItem = null;
+            this.infraccionBindingNavigator.MoveNextItem = null;
+            this.infraccionBindingNavigator.MovePreviousItem = null;
             this.infraccionBindingNavigator.Name = "infraccionBindingNavigator";
-            this.infraccionBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.infraccionBindingNavigator.Size = new System.Drawing.Size(949, 27);
+            this.infraccionBindingNavigator.PositionItem = null;
+            this.infraccionBindingNavigator.Size = new System.Drawing.Size(700, 27);
             this.infraccionBindingNavigator.TabIndex = 0;
             this.infraccionBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -178,6 +181,7 @@
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(24, 24);
             this.bindingNavigatorDeleteItem.Text = "Delete";
+            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -187,7 +191,7 @@
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(24, 24);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            this.bindingNavigatorMoveFirstItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bindingNavigatorMoveFirstItem_MouseDown);
+            this.bindingNavigatorMoveFirstItem.Click += new System.EventHandler(this.bindingNavigatorMoveFirstItem_Click);
             // 
             // bindingNavigatorMovePreviousItem
             // 
@@ -197,7 +201,7 @@
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(24, 24);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            this.bindingNavigatorMovePreviousItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bindingNavigatorMovePreviousItem_MouseDown);
+            this.bindingNavigatorMovePreviousItem.Click += new System.EventHandler(this.bindingNavigatorMovePreviousItem_Click);
             // 
             // bindingNavigatorSeparator
             // 
@@ -212,6 +216,8 @@
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 27);
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+            this.bindingNavigatorPositionItem.Leave += new System.EventHandler(this.bindingNavigatorPositionItem_Leave);
+            this.bindingNavigatorPositionItem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bindingNavigatorPositionItem_KeyDown);
             // 
             // bindingNavigatorSeparator1
             // 
@@ -226,7 +232,7 @@
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(24, 24);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
-            this.bindingNavigatorMoveNextItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bindingNavigatorMoveNextItem_MouseDown);
+            this.bindingNavigatorMoveNextItem.Click += new System.EventHandler(this.bindingNavigatorMoveNextItem_Click);
             // 
             // bindingNavigatorMoveLastItem
             // 
@@ -236,7 +242,7 @@
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(24, 24);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
-            this.bindingNavigatorMoveLastItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bindingNavigatorMoveLastItem_MouseDown);
+            this.bindingNavigatorMoveLastItem.Click += new System.EventHandler(this.bindingNavigatorMoveLastItem_Click);
             // 
             // bindingNavigatorSeparator2
             // 
@@ -283,6 +289,8 @@
             // puntos_descuentaUpDown
             // 
             this.puntos_descuentaUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.infraccionBindingSource, "puntos_descuenta", true));
+            this.errorProvider1.SetIconPadding(this.puntos_descuentaUpDown, 5);
+            this.puntos_descuentaUpDown.InterceptArrowKeys = false;
             this.puntos_descuentaUpDown.Location = new System.Drawing.Point(168, 233);
             this.puntos_descuentaUpDown.Maximum = new decimal(new int[] {
             15,
@@ -292,12 +300,30 @@
             this.puntos_descuentaUpDown.Name = "puntos_descuentaUpDown";
             this.puntos_descuentaUpDown.Size = new System.Drawing.Size(58, 22);
             this.puntos_descuentaUpDown.TabIndex = 3;
+            this.puntos_descuentaUpDown.ValueChanged += new System.EventHandler(this.puntos_descuentaUpDown_ValueChanged);
+            this.puntos_descuentaUpDown.Validating += new System.ComponentModel.CancelEventHandler(this.puntos_descuentaUpDown_Validating);
+            // 
+            // BtnCerrar
+            // 
+            this.BtnCerrar.CausesValidation = false;
+            this.BtnCerrar.Location = new System.Drawing.Point(253, 323);
+            this.BtnCerrar.Name = "BtnCerrar";
+            this.BtnCerrar.Size = new System.Drawing.Size(244, 90);
+            this.BtnCerrar.TabIndex = 4;
+            this.BtnCerrar.Text = "&Cerrar";
+            this.BtnCerrar.UseVisualStyleBackColor = true;
+            this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // FrmAltaInfraccion2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(949, 296);
+            this.ClientSize = new System.Drawing.Size(700, 484);
+            this.Controls.Add(this.BtnCerrar);
             this.Controls.Add(this.puntos_descuentaUpDown);
             this.Controls.Add(infraccion_idLabel);
             this.Controls.Add(this.infraccion_idTextBox);
@@ -317,6 +343,7 @@
             this.infraccionBindingNavigator.ResumeLayout(false);
             this.infraccionBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.puntos_descuentaUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,5 +372,7 @@
         private System.Windows.Forms.TextBox identificadorTextBox;
         private System.Windows.Forms.TextBox descripcionTextBox;
         private System.Windows.Forms.NumericUpDown puntos_descuentaUpDown;
+        private System.Windows.Forms.Button BtnCerrar;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
