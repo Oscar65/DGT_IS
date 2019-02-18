@@ -19,9 +19,19 @@ namespace DGT_IS
 
         private void conductorBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.conductorBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.dGTdbDataSet1);
+            try
+            {
+                this.Validate();
+                this.conductorBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.dGTdbDataSet1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                                "ERROR",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
 
         }
 
@@ -34,8 +44,162 @@ namespace DGT_IS
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
-            puntosNumericUpDown.Value = puntosNumericUpDown.Maximum;
-            dniTextBox.Select();
+            try
+            {
+                if (dniTextBox.Text == "")
+                {
+                    MessageBox.Show("El DNI no puede ser nulo",
+                    "ERROR",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                    return;
+                }
+
+                this.conductorBindingSource.AddNew();
+                puntosNumericUpDown.Value = puntosNumericUpDown.Maximum;
+                dniTextBox.Select();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                                "ERROR",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.conductorBindingSource.MoveFirst();
+                this.bindingNavigatorPositionItem.Text = (this.conductorBindingSource.Position + 1).ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                                "ERROR",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+        }
+
+        private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.conductorBindingSource.MovePrevious();
+                this.bindingNavigatorPositionItem.Text = (this.conductorBindingSource.Position + 1).ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                                "ERROR",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+        }
+
+        private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.conductorBindingSource.MoveNext();
+                this.bindingNavigatorPositionItem.Text = (this.conductorBindingSource.Position + 1).ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                                "ERROR",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+        }
+
+        private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.conductorBindingSource.MoveLast();
+                this.bindingNavigatorPositionItem.Text = (this.conductorBindingSource.Position + 1).ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                                "ERROR",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+        }
+
+        private void bindingNavigatorPositionItem_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                int value;
+                if (int.TryParse(this.bindingNavigatorPositionItem.Text, out value))
+                {
+                    this.conductorBindingSource.Position = value - 1;
+                }
+                else
+                {
+                    this.bindingNavigatorPositionItem.Undo();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                                "ERROR",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+        }
+
+        private void bindingNavigatorPositionItem_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    int value;
+                    if (int.TryParse(this.bindingNavigatorPositionItem.Text, out value))
+                    {
+                        this.conductorBindingSource.Position = value - 1;
+                    }
+                    else
+                    {
+                        this.bindingNavigatorPositionItem.Undo();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                                "ERROR",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+        }
+
+        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.conductorBindingSource.RemoveCurrent();
+                this.bindingNavigatorPositionItem.Text = (this.conductorBindingSource.Position + 1).ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                                "ERROR",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
         }
     }
 }
